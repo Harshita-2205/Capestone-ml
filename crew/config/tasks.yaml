@@ -1,0 +1,57 @@
+ner_validaton_task:
+  description: >
+    Validate the NER output generated for the following input text: 
+    {input_text}. Ensure all tags are correctly assigned, tokens are accurately 
+    mapped to their respective labels, and no tags are missing or misaligned. 
+    The NER output is:\n{ner_output}
+
+  expected_output: >
+    As specified by the pydantic model
+
+preliminary_diagnose_task:
+  description: >
+    Provide atleast {output_count} possible, health concerns based on {post_ner_report}
+    Provide a preliminary assessment of potential health concerns based on the given patient information, symptoms, 
+    medical history, and clinical observations. The input data includes details such as:
+    - Patient Information: Name, age, and gender.
+    - Symptoms: A list of reported symptoms.
+    - Medical History: Past conditions and relevant family medical history.
+    - Clinical Observations: Vital signs, lab test results, and imaging results.
+
+    Your goal is to identify possible diagnoses, explain the reasoning behind them, and provide recommendations for 
+    further action or treatment.
+
+  expected_output: >
+    A list of structured response formatted according to the Pydantic model
+
+best_practices_task:
+  description: >
+    Get {output_count} best practices for the given diagnosis and reasoning. 
+    Based on the provided preliminary diagnosis and reasoning, use the webcrawl tool to retrieve reliable and up-to-date best practices 
+    and actionable guidelines. Ensure the curated information is relevant to the health concerns and aligns with medical best practices. 
+    You have access to a webcrawl tool to search for guidelines and best practices from trusted sources.
+    Ensure the tool only retrieves information from publicly accessible websites.
+    Avoid sources that require an API, subscription, or any credentials for access.
+
+    The input parameters are as follows:
+      - Diagnosis: {diagnosis}
+      - Reasoning: {reasoning}
+
+  expected_output: >
+    A list of curated entries in the following pydantic format:
+      - Title: A concise title summarizing the best practice or guideline.
+      - URL: The source URL where the guideline or best practice was retrieved.
+      - Summary: A brief summary of the best practice or guideline, explaining its relevance to the diagnosis.
+
+report_writing_task:
+  description: >
+    Write a comprehensive clinical report based on the provided JSON data from other agents.
+    You are not supposed to interpret things on your own, not to remove anything.
+    You will strictly note down everything that is being passed, in a readable and presentable format.
+     - Post NER Report : {post_ner_report}
+     - Prelim Diagnosis: {prelim_diagnosis}
+     - Best Practises: {best_pracs}
+  expected_output: >
+    A detailed report in markdown format.
+    Use tags as used in markdown effectively, making it more easy and appealing to read
+  output_file: report.md
