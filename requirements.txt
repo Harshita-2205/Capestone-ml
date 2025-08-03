@@ -1,0 +1,14 @@
+transformers
+ipykernel
+torch
+crewai
+crewai-tools
+langchain
+langchain-google-genai
+langchain_community
+tavily-python
+python-dotenv
+
+bitsandbytes
+accelerate
+huggingface_hub
