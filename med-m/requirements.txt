@@ -1,0 +1,27 @@
+transformers
+torch
+ipykernel
+
+# CrewAI & LangChain
+crewai
+crewai-tools
+langchain
+langchain-google-genai
+langchain_community
+tavily-python
+
+# Hugging Face & Optimization
+bitsandbytes
+accelerate
+huggingface_hub
+
+# Env Management
+python-dotenv
+
+# RAG essentials
+sentence-transformers
+faiss-cpu
+fastapi
+uvicorn
+pydantic
+python-multipart
